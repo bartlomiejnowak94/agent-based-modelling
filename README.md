@@ -1,5 +1,6 @@
 # agent-based-modelling
-Agent-based basic models
+Agent-based basic models from course "Agent-based modelling" in the Applied Mathematics studies.
+
 
 ## Table of contents
 * [General info](#general-info)
@@ -11,7 +12,7 @@ This project is simple Lorem ipsum dolor generator.
 	
 ## Technologies
 Project is created with:
-* Lorem version: 12.3
+* ![alt text](https://applover.pl/wp-content/uploads/2020/01/kisspng-python-computer-icons-programming-language-executa-5d0f0aa7c78fb3.0414836115612668558174-1024x1024.png)
 * Ipsum version: 2.33
 * Ament library version: 999
 	
@@ -25,4 +26,3 @@ $ npm start
 ```
 
 ## Sources
-This simple app is part of the course "Agent-based modelling" in the Applied Mathematics studies.
