@@ -23,3 +23,6 @@ $ cd ../lorem
 $ npm install
 $ npm start
 ```
+
+## Sources
+This simple app is part of the course "Agent-based modelling" in the Applied Mathematics studies.
