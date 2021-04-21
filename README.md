@@ -17,12 +17,10 @@ Project is created with:
 * Python 3
 	
 ## Setup
-To run this project, install it locally using npm:
-
+To run this project, download and cd to appropriate folder:
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ cd ../forest_fire_model
+$ python forest_fire_model.py
 ```
+If exists some additional requirements, they are described in correspoding readme.md subfolder.
 
-## Sources
