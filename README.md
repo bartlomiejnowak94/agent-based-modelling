@@ -11,6 +11,7 @@ Agent-based basic models from course "Agent-based modelling" in the Applied Math
 Each folder contains one model in few versions:
 * Forest fire model
 * Reynolds boids flocking model
+* Nagel–Schreckenberg model
 	
 ## Technologies
 Project is created with:
