@@ -1,6 +1,4 @@
 # agent-based-modelling
-Agent-based basic models from course "Agent-based modelling" in the Applied Mathematics studies.
-
 
 ## Table of contents
 * [General info](#general-info)
