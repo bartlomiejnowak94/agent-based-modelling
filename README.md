@@ -6,7 +6,7 @@
 
 ## General info
 Each folder contains one model in few versions:
-* q-voter model
+* [q-voter model](https://github.com/bartlomiejnowak94/agent-based-modelling/tree/main/qvotermodel)
 	
 ## Technologies
 Projects are created with:
