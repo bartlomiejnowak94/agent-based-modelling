@@ -12,4 +12,4 @@ Version of project:
 * soon
 
 ## Pictures
-![interface](/images/screen1.PNG)
+![interface](images/screen1.PNG?raw=true)
