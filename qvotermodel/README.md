@@ -4,6 +4,7 @@ Basic q-voter model implementation.
 ## Table of contents
 * [Technologies](#technologies)
 * [Pictures](#pictures)
+* [Acknowledgements](#acknowledgements)
 
 ## Technologies
 Version of project:
@@ -13,3 +14,7 @@ Version of project:
 
 ## Pictures
 ![interface](images/screen1.PNG?raw=true)
+
+## Acknowledgements
+
+* @github/JakubPawlowskii - turtle design
