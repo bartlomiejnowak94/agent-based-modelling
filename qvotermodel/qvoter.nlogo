@@ -1,4 +1,4 @@
-;; Copyright Bartłomiej Nowak ;;
+;; Copyright Bartłomiej Nowak 2021;;
 
 to setup
   clear-all
@@ -37,7 +37,7 @@ to go
     set shape "circle"
     let gpanel 0
     let rpanel 0
-    if count link-neighbors >= q_panel_size
+    if (count link-neighbors) >= q_panel_size
     [
       ask n-of q_panel_size link-neighbors
       [
@@ -49,6 +49,17 @@ to go
       if (gpanel = q_panel_size) [set color green]
       if (rpanel = q_panel_size) [set color red]
     ]
+  ]
+  if (all? turtles [color = green])
+  [
+    ask turtles [set shape "spinson"]
+    ask links [set color gray]
+    stop
+  ]
+  if (all? turtles [color = red]) [
+    ask turtles [set shape "spinson"]
+    ask links [set color gray]
+    stop
   ]
   tick
 end
@@ -133,14 +144,14 @@ NIL
 
 SLIDER
 9
-53
+94
 181
-86
+127
 density_of_greens
 density_of_greens
 0
 100
-51.0
+26.0
 1
 1
 %
@@ -154,13 +165,13 @@ CHOOSER
 q_panel_size
 q_panel_size
 1 2 3 4
-2
+0
 
 SLIDER
 9
-95
+10
 181
-128
+43
 num_agents
 num_agents
 10
@@ -195,21 +206,21 @@ TEXTBOX
 288
 1149
 440
-Circle = considered agent\n\nX symbol = choosen q panel \n\nthick line = edges of considered agent\n\ninitial_connections = number of edges created by each node at start
+Circle = considered agent\n\nX symbol = choosen q panel \n\nthick line = edges of considered agent\n\ninitial_connections = number of edges created by each node at start (max num_agents - 1)
 15
 0.0
 0
 
 SLIDER
 9
-10
+51
 181
-43
+84
 initial_connections
 initial_connections
 2
 num_agents - 1
-2.0
+6.0
 1
 1
 NIL
@@ -563,7 +574,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.0.4
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
