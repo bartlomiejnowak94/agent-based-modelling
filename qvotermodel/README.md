@@ -12,4 +12,4 @@ Version of project:
 * soon
 
 ## Pictures
-![GitHub Logo](/images/screen1.png)
+![interface](/images/screen1.PNG)
