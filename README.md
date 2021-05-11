@@ -9,19 +9,12 @@ Agent-based basic models from course "Agent-based modelling" in the Applied Math
 
 ## General info
 Each folder contains one model in few versions:
-* Forest fire model
-* Reynolds boids flocking model
-* Nagel–Schreckenberg model
+* q-voter model
 	
 ## Technologies
-Project is created with:
+Projects are created with:
 * Python 3
+* NetLogo 6.2
 	
-## Setup
-To run this project, download and cd to appropriate folder:
-```
-$ cd ../forest_fire_model
-$ python forest_fire_model.py
-```
 If exists some additional requirements, they are described in correspoding readme.md subfolder.
 
