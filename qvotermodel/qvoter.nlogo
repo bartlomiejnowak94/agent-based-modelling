@@ -1,77 +1,99 @@
 ;; Copyright Bartłomiej Nowak 2021;;
 
+globals[
+  green_count
+  red_count
+]
+
 to setup
-  clear-all
-  ask patches [set pcolor white]
-  set-default-shape turtles "spinson"
-  ;; make the initial network of two turtles and an edge
-  ;make-node nobody        ;; first node, unattached
-  ;make-node turtle 0      ;; second node, attached to first node
+  clear-all ;initial clear
+  ask patches [set pcolor white] ;set all patches to white
   create-turtles num_agents[
-    set size 2
-    ifelse (random 100) < density_of_greens
-    [set color green]
-    [set color red]
-  ] ; stworz 20 agentow
+    set size (6 - 0.055556 * (num_agents - 10))
+    ifelse (random 100) <= density_of_greens
+    [
+      set color green
+      set shape "yes"
+    ]
+    [
+      set color red
+      set shape "not"
+    ]
+  ]
   ask turtles [
    create-links-with n-of initial_connections other turtles
-  ]; polacz agentow z 4 agentami
-  layout-circle sort turtles 14 ; rozloz ich na kole o promieniu 10
-  ask turtles [ set label-color black ]
+  ]
+  layout-circle sort turtles size_of_circle
+  calc_agents
   reset-ticks
 end
 
-to go
-  ask links [set color gray]
-  ask turtles
-  [
-    ;ifelse color = green [set label 1]
-    ;[set label 0]
-    set shape "spinson"
+to calc_agents
+  set green_count count turtles with [color = green] / num_agents
+  set red_count count turtles with [color = red] / num_agents
+end
+
+to change_apperance
+  ask turtles [
+    ifelse color = green
+    [ set shape "yes" ]
+    [ set shape "not" ]
   ]
-  let choice random num_agents
+  ask links [
+    set color gray
+    set thickness 0
+  ]
+end
+
+to update
+  let gpanel 0
+  let rpanel 0
+  if (count link-neighbors) >= q_panel_size
+  [
+    ask n-of q_panel_size link-neighbors
+    [
+      set shape "x"
+      ifelse color = green
+      [ set gpanel gpanel + 1 ]
+      [ set rpanel rpanel + 1 ]
+    ]
+    if (gpanel = q_panel_size) [set color green]
+    if (rpanel = q_panel_size) [set color red]
+  ]
+end
+
+
+to go
+  ;reset visuals
+  change_apperance
+  let choice random num_agents ;set choice value
   ask turtle choice
   [
-    ask my-links [set color black set thickness 0.2]
-    ;set label "voter"
-    set shape "circle"
-    let gpanel 0
-    let rpanel 0
-    if (count link-neighbors) >= q_panel_size
-    [
-      ask n-of q_panel_size link-neighbors
-      [
-        set shape "x"
-        ifelse color = green
-        [ set gpanel gpanel + 1]
-        [ set rpanel rpanel + 1]
-      ]
-      if (gpanel = q_panel_size) [set color green]
-      if (rpanel = q_panel_size) [set color red]
-    ]
+    set shape "spinson"
+    ask my-links [set color black set thickness 0.4]
+    update
   ]
+  calc_agents
+  tick
   if (all? turtles [color = green])
   [
-    ask turtles [set shape "spinson"]
-    ask links [set color gray]
+    change_apperance
     stop
   ]
   if (all? turtles [color = red]) [
-    ask turtles [set shape "spinson"]
-    ask links [set color gray]
+    change_apperance
     stop
   ]
-  tick
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
 205
 10
-616
-422
+703
+509
 -1
 -1
-13.0
+10.90244
 1
 10
 1
@@ -81,10 +103,10 @@ GRAPHICS-WINDOW
 0
 0
 1
--15
-15
--15
-15
+-22
+22
+-22
+22
 1
 1
 1
@@ -92,10 +114,10 @@ ticks
 30.0
 
 BUTTON
-10
-190
-73
-223
+11
+193
+74
+226
 NIL
 setup
 NIL
@@ -109,10 +131,10 @@ NIL
 1
 
 BUTTON
-78
-190
-141
-223
+79
+193
+142
+226
 NIL
 go
 NIL
@@ -126,10 +148,10 @@ NIL
 1
 
 BUTTON
-10
-229
-100
-262
+11
+232
+101
+265
 go forever
 go
 T
@@ -151,7 +173,7 @@ density_of_greens
 density_of_greens
 0
 100
-26.0
+25.0
 1
 1
 %
@@ -165,7 +187,7 @@ CHOOSER
 q_panel_size
 q_panel_size
 1 2 3 4
-0
+2
 
 SLIDER
 9
@@ -183,13 +205,13 @@ NIL
 HORIZONTAL
 
 PLOT
-643
-12
-979
-271
-plot 1
+720
+13
+1056
+272
+How many greens/reds vs time
 time
-Percentage of greens/reds
+% of greens/reds
 0.0
 10.0
 0.0
@@ -198,15 +220,15 @@ true
 true
 "" ""
 PENS
-"greens" 1.0 0 -13840069 true "" "plot count turtles with [color = green] / num_agents"
-"reds" 1.0 0 -2674135 true "" "plot count turtles with [color = red] / num_agents"
+"greens" 1.0 0 -13840069 true "" "plot green_count"
+"reds" 1.0 0 -2674135 true "" "plot red_count"
 
 TEXTBOX
-648
-288
-1149
-440
-Circle = considered agent\n\nX symbol = choosen q panel \n\nthick line = edges of considered agent\n\ninitial_connections = number of edges created by each node at start (max num_agents - 1)
+721
+350
+1222
+502
+Spinson = considered agent\n\nX symbol = choosen q panel \n\nthick line = edges of considered agent\n\ninitial_connections = number of edges created by each node at start (max num_agents - 1)
 15
 0.0
 0
@@ -220,11 +242,54 @@ initial_connections
 initial_connections
 2
 num_agents - 1
-6.0
+5.0
 1
 1
 NIL
 HORIZONTAL
+
+TEXTBOX
+16
+282
+166
+301
+How to draw:
+15
+0.0
+1
+
+INPUTBOX
+13
+306
+168
+366
+size_of_circle
+19.0
+1
+0
+Number
+
+MONITOR
+720
+280
+789
+325
+% of reds
+red_count
+17
+1
+11
+
+MONITOR
+805
+280
+886
+325
+% of greens
+green_count
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -429,6 +494,14 @@ true
 0
 Line -7500403 true 150 0 150 150
 
+not
+false
+0
+Circle -7500403 true true 75 75 150
+Circle -16777216 true false 105 105 30
+Circle -16777216 true false 165 105 30
+Polygon -16777216 true false 120 195 195 165 210 165 120 195
+
 pentagon
 false
 0
@@ -573,8 +646,17 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
+
+yes
+false
+0
+Circle -7500403 true true 75 75 150
+Circle -16777216 true false 105 105 30
+Circle -16777216 true false 165 105 30
+Circle -16777216 true false 118 148 62
+Rectangle -7500403 true true 105 135 195 165
 @#$#@#$#@
-NetLogo 6.0.4
+NetLogo 6.1.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
