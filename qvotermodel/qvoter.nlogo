@@ -271,23 +271,23 @@ Number
 
 MONITOR
 720
-280
-789
-325
+279
+878
+324
 % of reds
 red_count
-17
+10
 1
 11
 
 MONITOR
-805
-280
-886
-325
+893
+279
+1053
+324
 % of greens
 green_count
-17
+10
 1
 11
 
