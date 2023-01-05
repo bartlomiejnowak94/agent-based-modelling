@@ -7,7 +7,7 @@
 ## General info
 Each folder contains one model in few versions:
 * [boids](https://github.com/bartlomiejnowak94/agent-based-modelling/tree/main/boids)
-* [forest fire model](https://github.com/bartlomiejnowak94/agent-based-modelling/tree/main/forest fire model)
+* [forest fire model](https://github.com/bartlomiejnowak94/agent-based-modelling/tree/main/forest%20fire%20model)
 * [q-voter model](https://github.com/bartlomiejnowak94/agent-based-modelling/tree/main/qvotermodel)
 	
 ## Technologies
